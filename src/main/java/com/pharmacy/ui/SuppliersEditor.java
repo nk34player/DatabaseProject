@@ -424,6 +424,7 @@ public class SuppliersEditor extends javax.swing.JFrame {
         loadData();
         currentEdit = false;
         editFields(currentEdit);
+        updateButtons();
     }
 
     private boolean validateFields() {
@@ -514,9 +515,17 @@ public class SuppliersEditor extends javax.swing.JFrame {
         currentEdit = currentEdit != true;
         editFields(currentEdit);
     }//GEN-LAST:event_jButton8ActionPerformed
+    private void updateButtons() {
+        jButton7.setEnabled(currentIndex > 0);
+        jButton6.setEnabled(currentIndex < suppliers.size() - 1);
+    }
+    
     public void previousUser() {
         if (currentIndex > 0) {
             currentIndex--;
+            updateButtons();
+            currentEdit = false;
+            editFields(currentEdit);
             displaySupplier(currentIndex);
         }
     }
@@ -526,6 +535,9 @@ public class SuppliersEditor extends javax.swing.JFrame {
     public void nextUser() {
         if (currentIndex < suppliers.size() - 1) {
             currentIndex++;
+            updateButtons();
+            currentEdit = false;
+            editFields(currentEdit);
             displaySupplier(currentIndex);
         }
     }

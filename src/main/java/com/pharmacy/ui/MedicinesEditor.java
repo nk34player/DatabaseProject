@@ -11,6 +11,8 @@ import com.pharmacy.db.SharedInformation;
 import com.pharmacy.db.SuppliersDB;
 import java.awt.Image;
 import java.util.List;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -241,7 +243,7 @@ public class MedicinesEditor extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(18, 18, 18))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(258, 258, 258)
+                .addGap(294, 294, 294)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -322,10 +324,13 @@ public class MedicinesEditor extends javax.swing.JFrame {
     private Boolean currentEdit = false;
 
     private void loadCombo() {
+        ComboBoxModel<String> a = new DefaultComboBoxModel<>();
+        jComboBox1.setModel(a);
+        a = new DefaultComboBoxModel<>();
         for (String name : CategoriesDB.getAllCategoriesNames()) {
             jComboBox1.addItem(name);
         }
-
+        jComboBox2.setModel(a);
         for (String name : SuppliersDB.getAllSupplierCompanies()) {
             jComboBox2.addItem(name);
         }
@@ -335,24 +340,28 @@ public class MedicinesEditor extends javax.swing.JFrame {
         jTextField1.setText("");
         jTextField2.setText("");
         jTextField3.setText("");
-        jComboBox1.setModel(null);
-        jComboBox2.setModel(null);
         loadCombo();
     }
 
     private void editFields(Boolean edit) {
+        jComboBox1.setEditable(false);
+        jComboBox2.setEditable(false);
         if (edit == true) {
             jButton9.setEnabled(true);
             jButton8.setEnabled(false);
             jTextField1.setEditable(true);
             jTextField2.setEditable(true);
             jTextField3.setEditable(true);
+            jComboBox1.setEnabled(true);
+            jComboBox2.setEnabled(true);
         } else {
             jButton9.setEnabled(false);
             jButton8.setEnabled(true);
             jTextField1.setEditable(false);
             jTextField2.setEditable(false);
             jTextField3.setEditable(false);
+            jComboBox1.setEnabled(false);
+            jComboBox2.setEnabled(false);
         }
     }
 
@@ -400,6 +409,7 @@ public class MedicinesEditor extends javax.swing.JFrame {
         loadData();
         currentEdit = false;
         editFields(currentEdit);
+        updateButtons();
     }
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -488,24 +498,38 @@ public class MedicinesEditor extends javax.swing.JFrame {
 
             curMedicine.setUnitPrice(Double.parseDouble(jTextField2.getText().trim()));
             curMedicine.setStockQuantity(Integer.parseInt(jTextField3.getText().trim()));
+
+            MedicinesDB.updateMedicine(curMedicine);
+
             currentEdit = false;
             editFields(currentEdit);
             initialRun();
         }
     }
 
-    public void previousUser() {
-        if (currentIndex > 0) {
-            currentIndex--;
-            displayMedicine(currentIndex);
-        }
+    private void updateButtons() {
+        jButton7.setEnabled(currentIndex > 0);
+        jButton6.setEnabled(currentIndex < medicines.size() - 1);
     }
 
-    public void nextUser() {
-        if (currentIndex < medicines.size() - 1) {
-            currentIndex++;
+    private void previousUser() {
+        if (currentIndex > 0) {
+            currentIndex--;
+            currentEdit = false;
+            editFields(currentEdit);
             displayMedicine(currentIndex);
         }
+        updateButtons();
+    }
+
+    private void nextUser() {
+        if (currentIndex < medicines.size() - 1) {
+            currentIndex++;
+            currentEdit = false;
+            editFields(currentEdit);
+            displayMedicine(currentIndex);
+        }
+        updateButtons();
     }
 
     /**

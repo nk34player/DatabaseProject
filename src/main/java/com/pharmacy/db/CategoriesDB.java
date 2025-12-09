@@ -106,7 +106,7 @@ public class CategoriesDB {
         List<String> categories = new ArrayList<>();
 
         final String SELECT_ALL_SQL
-                = "SELECT ccategory_name FROM categories";
+                = "SELECT category_name FROM categories";
 
         try {
             conn = getConnection();

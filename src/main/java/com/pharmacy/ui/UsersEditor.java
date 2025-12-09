@@ -389,6 +389,7 @@ public class UsersEditor extends javax.swing.JFrame {
         loadData();
         currentEdit = false;
         editFields(currentEdit);
+        updateButtons();
     }
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -441,9 +442,17 @@ public class UsersEditor extends javax.swing.JFrame {
         currentEdit = currentEdit != true;
         editFields(currentEdit);
     }//GEN-LAST:event_jButton8ActionPerformed
+    private void updateButtons() {
+        jButton7.setEnabled(currentIndex > 0);
+        jButton6.setEnabled(currentIndex < users.size() - 1);
+    }
+    
     public void previousUser() {
         if (currentIndex > 0) {
             currentIndex--;
+            updateButtons();
+            currentEdit = false;
+            editFields(currentEdit);
             displayUser(currentIndex);
         }
     }
@@ -453,6 +462,9 @@ public class UsersEditor extends javax.swing.JFrame {
     public void nextUser() {
         if (currentIndex < users.size() - 1) {
             currentIndex++;
+            updateButtons();
+            currentEdit = false;
+            editFields(currentEdit);
             displayUser(currentIndex);
         }
     }
