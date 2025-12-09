@@ -154,6 +154,36 @@ public class SuppliersDB {
 
         return suppliers;
     }
+    
+    public static List<String> getAllSupplierCompanies() {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        List<String> list = new ArrayList<>();
+
+        final String SQL = "SELECT company_name FROM suppliers ORDER BY company_name";
+
+        try {
+            conn = getConnection();
+            if (conn == null) return list;
+
+            ps = conn.prepareStatement(SQL);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                list.add(rs.getString("company_name"));
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            try { if (rs != null) rs.close(); } catch (Exception e) {}
+            try { if (ps != null) ps.close(); } catch (Exception e) {}
+            try { if (conn != null) conn.close(); } catch (Exception e) {}
+        }
+
+        return list;
+    }
 
     public static boolean deleteSupplier(int supplierId) {
         Connection conn = null;
