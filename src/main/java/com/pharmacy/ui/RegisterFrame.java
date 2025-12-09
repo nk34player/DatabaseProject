@@ -43,6 +43,7 @@ public class RegisterFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
         setMinimumSize(new java.awt.Dimension(630, 490));
+        setResizable(false);
         setSize(new java.awt.Dimension(630, 490));
         getContentPane().setLayout(null);
 

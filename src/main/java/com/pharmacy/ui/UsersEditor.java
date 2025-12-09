@@ -330,10 +330,14 @@ public class UsersEditor extends javax.swing.JFrame {
 
     private void editFields(Boolean edit) {
         if (edit == true) {
+            jButton9.setEnabled(true);
+            jButton8.setEnabled(false);
             jTextField1.setEditable(true);
             jTextField2.setEditable(true);
             jTextField3.setEditable(true);
         } else {
+            jButton9.setEnabled(false);
+            jButton8.setEnabled(true);
             jTextField1.setEditable(false);
             jTextField2.setEditable(false);
             jTextField3.setEditable(false);

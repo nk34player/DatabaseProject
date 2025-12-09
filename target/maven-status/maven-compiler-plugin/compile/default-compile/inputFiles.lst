@@ -1,14 +1,16 @@
-F:\Study\3rd Year CE\Database\FinalProject\src\main\java\com\mycompany\hw0\HW0.java
-F:\Study\3rd Year CE\Database\FinalProject\src\main\java\com\pharmacy\db\DBConnection.java
-F:\Study\3rd Year CE\Database\FinalProject\src\main\java\com\pharmacy\db\SharedInformation.java
-F:\Study\3rd Year CE\Database\FinalProject\src\main\java\com\pharmacy\db\SuppliersDB.java
-F:\Study\3rd Year CE\Database\FinalProject\src\main\java\com\pharmacy\db\User.java
-F:\Study\3rd Year CE\Database\FinalProject\src\main\java\com\pharmacy\db\UsersDB.java
-F:\Study\3rd Year CE\Database\FinalProject\src\main\java\com\pharmacy\ui\CashierDashboard.java
-F:\Study\3rd Year CE\Database\FinalProject\src\main\java\com\pharmacy\ui\GradientPanel.java
-F:\Study\3rd Year CE\Database\FinalProject\src\main\java\com\pharmacy\ui\LoginFrame.java
-F:\Study\3rd Year CE\Database\FinalProject\src\main\java\com\pharmacy\ui\ManagerDashboard.java
-F:\Study\3rd Year CE\Database\FinalProject\src\main\java\com\pharmacy\ui\PharmacistDashboard.java
-F:\Study\3rd Year CE\Database\FinalProject\src\main\java\com\pharmacy\ui\RegisterFrame.java
-F:\Study\3rd Year CE\Database\FinalProject\src\main\java\com\pharmacy\ui\SuppliersEditor.java
-F:\Study\3rd Year CE\Database\FinalProject\src\main\java\com\pharmacy\ui\UsersEditor.java
+C:\Users\NK34\Desktop\Study\3rd Year\Database\DatabaseProject\src\main\java\com\mycompany\hw0\HW0.java
+C:\Users\NK34\Desktop\Study\3rd Year\Database\DatabaseProject\src\main\java\com\pharmacy\db\CategoriesDB.java
+C:\Users\NK34\Desktop\Study\3rd Year\Database\DatabaseProject\src\main\java\com\pharmacy\db\DBConnection.java
+C:\Users\NK34\Desktop\Study\3rd Year\Database\DatabaseProject\src\main\java\com\pharmacy\db\SharedInformation.java
+C:\Users\NK34\Desktop\Study\3rd Year\Database\DatabaseProject\src\main\java\com\pharmacy\db\SuppliersDB.java
+C:\Users\NK34\Desktop\Study\3rd Year\Database\DatabaseProject\src\main\java\com\pharmacy\db\User.java
+C:\Users\NK34\Desktop\Study\3rd Year\Database\DatabaseProject\src\main\java\com\pharmacy\db\UsersDB.java
+C:\Users\NK34\Desktop\Study\3rd Year\Database\DatabaseProject\src\main\java\com\pharmacy\ui\CashierDashboard.java
+C:\Users\NK34\Desktop\Study\3rd Year\Database\DatabaseProject\src\main\java\com\pharmacy\ui\CategoriesEditor.java
+C:\Users\NK34\Desktop\Study\3rd Year\Database\DatabaseProject\src\main\java\com\pharmacy\ui\GradientPanel.java
+C:\Users\NK34\Desktop\Study\3rd Year\Database\DatabaseProject\src\main\java\com\pharmacy\ui\LoginFrame.java
+C:\Users\NK34\Desktop\Study\3rd Year\Database\DatabaseProject\src\main\java\com\pharmacy\ui\ManagerDashboard.java
+C:\Users\NK34\Desktop\Study\3rd Year\Database\DatabaseProject\src\main\java\com\pharmacy\ui\PharmacistDashboard.java
+C:\Users\NK34\Desktop\Study\3rd Year\Database\DatabaseProject\src\main\java\com\pharmacy\ui\RegisterFrame.java
+C:\Users\NK34\Desktop\Study\3rd Year\Database\DatabaseProject\src\main\java\com\pharmacy\ui\SuppliersEditor.java
+C:\Users\NK34\Desktop\Study\3rd Year\Database\DatabaseProject\src\main\java\com\pharmacy\ui\UsersEditor.java

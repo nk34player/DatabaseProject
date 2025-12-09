@@ -364,7 +364,11 @@ public class SuppliersEditor extends javax.swing.JFrame {
             jTextField3.setEditable(true);
             jTextField4.setEditable(true);
             jTextField5.setEditable(true);
+            jButton9.setEnabled(true);
+            jButton8.setEnabled(false);
         } else {
+            jButton9.setEnabled(false);
+            jButton8.setEnabled(true);
             jTextField1.setEditable(false);
             jTextField2.setEditable(false);
             jTextField3.setEditable(false);
@@ -468,7 +472,7 @@ public class SuppliersEditor extends javax.swing.JFrame {
         changeStatus();
     }//GEN-LAST:event_jButton11ActionPerformed
     private void deleteCurrentUser() {
-        SuppliersDB.Supplier currentSupplier = suppliers.get(currentIndex); 
+        SuppliersDB.Supplier currentSupplier = suppliers.get(currentIndex);
         if (currentSupplier != null) {
             int confirm = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete this supplier?", "Confirm Delete", JOptionPane.YES_NO_OPTION);
             if (confirm == JOptionPane.YES_OPTION) {
