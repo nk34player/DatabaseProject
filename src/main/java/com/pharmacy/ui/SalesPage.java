@@ -26,6 +26,8 @@ public class SalesPage extends javax.swing.JFrame {
      */
     public SalesPage() {
         initComponents();
+        updateTotalPrice();
+        createProducts();
     }
     private double totalPrice = 0;
     private List<CartItem> cart = new ArrayList<>();
@@ -88,12 +90,18 @@ public class SalesPage extends javax.swing.JFrame {
 
     private void updateTotalPrice() {
         double total = 0.0;
-
-        for (CartItem item : cart) {
-            total += item.getTotalPrice();
+        if (!cart.isEmpty()) {
+            jButton9.setEnabled(true);
+            for (CartItem item : cart) {
+                total += item.getTotalPrice();
+            }
+            totalPrice = total;
+            jLabel1.setText("Total Price: " + total);
+        } else {
+            jLabel1.setText("Total Price: " + total);
+            jButton9.setEnabled(false);
         }
-        totalPrice = total;
-        jLabel1.setText("Total Price: " + total);
+
     }
 
     private void addMedicineToCart(ProductTemplate card, Medicine medicine, int quantity) {
@@ -334,7 +342,6 @@ public class SalesPage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        createProducts();
         autoSearchHelper();
     }//GEN-LAST:event_formWindowOpened
 

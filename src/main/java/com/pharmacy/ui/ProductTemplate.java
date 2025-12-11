@@ -28,8 +28,14 @@ public class ProductTemplate extends javax.swing.JPanel {
         initComponents();
     }
 
-    private void checkAdded() {
-        jButton2.setEnabled(added);
+    private void checkButtons() {
+        if (medicine.getStockQuantity() > 0) {
+            jButton2.setEnabled(added);
+        } else {
+            jButton1.setEnabled(false);
+            jButton2.setEnabled(false);
+        }
+        
     }
 
     public ProductTemplate(Medicine medicine, CartListener listener) {
@@ -41,7 +47,7 @@ public class ProductTemplate extends javax.swing.JPanel {
         priceLbl.setText("Price: " + medicine.getUnitPrice());
         stockLbl.setText("Stock quantity: " + medicine.getStockQuantity());
         countSpinner.setModel(new SpinnerNumberModel(1, 1, medicine.getStockQuantity(), 1));
-        checkAdded();
+        checkButtons();
     }
 
     public Medicine getMedicine() {
@@ -163,7 +169,7 @@ public class ProductTemplate extends javax.swing.JPanel {
             listener.onAdd(this, medicine, qty);
         }
         added = true;
-        checkAdded();
+        checkButtons();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -171,7 +177,7 @@ public class ProductTemplate extends javax.swing.JPanel {
             listener.onRemove(this, medicine);
         }
         added = false;
-        checkAdded();
+        checkButtons();
     }//GEN-LAST:event_jButton2ActionPerformed
 
 
