@@ -376,7 +376,9 @@ public class CategoriesEditor extends javax.swing.JFrame {
                 initialRun();
             }
         }
-    }    private void saveBtn() {
+    }
+
+    private void saveBtn() {
         Category curCategory = categories.get(currentIndex);
         if (curCategory != null) {
             curCategory.setCategoryName(jTextField1.getText());
@@ -386,17 +388,33 @@ public class CategoriesEditor extends javax.swing.JFrame {
             editFields(currentEdit);
             initialRun();
         }
-    }    public void previousUser() {
+    }
+
+    private void updateButtons() {
+        jButton7.setEnabled(currentIndex > 0);
+        jButton6.setEnabled(currentIndex < categories.size() - 1);
+    }
+
+    public void previousUser() {
         if (currentIndex > 0) {
             currentIndex--;
+            currentEdit = false;
+            editFields(currentEdit);
             displayCategory(currentIndex);
         }
-    }    public void nextUser() {
+        updateButtons();
+    }
+
+    public void nextUser() {
         if (currentIndex < categories.size() - 1) {
             currentIndex++;
+            currentEdit = false;
+            editFields(currentEdit);
             displayCategory(currentIndex);
         }
+        updateButtons();
     }
+
     /**
      * @param args the command line arguments
      */

@@ -109,21 +109,23 @@ public class MedicinesDB {
             this.manufacturingDate = manufacturingDate;
         }
     }
-    
+
     public static List<Medicine> getAllMedicines() {
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
         List<Medicine> medicines = new ArrayList<>();
 
-        final String SELECT_ALL_SQL =
-            "SELECT medicine_id, category_id, medicine_name, batch_number, " +
-            "company_name, unit_price, stock_quantity, expiry_date, manufacturing_date " +
-            "FROM medicines";
+        final String SELECT_ALL_SQL
+                = "SELECT medicine_id, category_id, medicine_name, batch_number, "
+                + "company_name, unit_price, stock_quantity, expiry_date, manufacturing_date "
+                + "FROM medicines";
 
         try {
             conn = getConnection();
-            if (conn == null) return medicines;
+            if (conn == null) {
+                return medicines;
+            }
 
             ps = conn.prepareStatement(SELECT_ALL_SQL);
             rs = ps.executeQuery();
@@ -146,12 +148,87 @@ public class MedicinesDB {
         } catch (Exception ex) {
             ex.printStackTrace();
         } finally {
-            try { if (rs != null) rs.close(); } catch (Exception e) {}
-            try { if (ps != null) ps.close(); } catch (Exception e) {}
-            try { if (conn != null) conn.close(); } catch (Exception e) {}
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+            } catch (Exception e) {
+            }
+            try {
+                if (ps != null) {
+                    ps.close();
+                }
+            } catch (Exception e) {
+            }
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (Exception e) {
+            }
         }
 
         return medicines;
+    }
+
+    public static Medicine getMedicineById(int id) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        final String SQL
+                = "SELECT medicine_id, category_id, medicine_name, batch_number, "
+                + "company_name, unit_price, stock_quantity, expiry_date, manufacturing_date "
+                + "FROM medicines WHERE medicine_id = ?";
+
+        try {
+            conn = getConnection();
+            if (conn == null) {
+                return null;
+            }
+
+            ps = conn.prepareStatement(SQL);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return new Medicine(
+                        rs.getInt("medicine_id"),
+                        rs.getInt("category_id"),
+                        rs.getString("medicine_name"),
+                        rs.getString("batch_number"),
+                        rs.getString("company_name"),
+                        rs.getDouble("unit_price"),
+                        rs.getInt("stock_quantity"),
+                        rs.getDate("expiry_date"),
+                        rs.getDate("manufacturing_date")
+                );
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+            } catch (Exception e) {
+            }
+            try {
+                if (ps != null) {
+                    ps.close();
+                }
+            } catch (Exception e) {
+            }
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (Exception e) {
+            }
+        }
+
+        return null;
     }
 
     public static boolean addMedicine(Medicine med) {

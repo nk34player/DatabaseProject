@@ -150,6 +150,62 @@ public class CustomersDB {
         return customers;
     }
 
+    public static Customer getCustomerById(int id) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        final String SQL = "SELECT customer_id, full_name, phone, email, street_address, city, registered_date "
+                + "FROM customers WHERE customer_id = ?";
+
+        try {
+            conn = getConnection();
+            if (conn == null) {
+                return null;
+            }
+
+            ps = conn.prepareStatement(SQL);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return new Customer(
+                        rs.getInt("customer_id"),
+                        rs.getString("full_name"),
+                        rs.getString("phone"),
+                        rs.getString("email"),
+                        rs.getString("street_address"),
+                        rs.getString("city"),
+                        rs.getString("registered_date")
+                );
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+            } catch (Exception e) {
+            }
+            try {
+                if (ps != null) {
+                    ps.close();
+                }
+            } catch (Exception e) {
+            }
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (Exception e) {
+            }
+        }
+
+        return null;
+    }
+
     public static boolean addCustomer(Customer customer) {
         Connection conn = null;
         PreparedStatement ps = null;

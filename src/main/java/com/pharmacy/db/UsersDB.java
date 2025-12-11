@@ -217,6 +217,61 @@ public class UsersDB {
         return users;
     }
 
+    public static User getUserById(int id) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        final String SQL = "SELECT user_id, username, full_name, role, status "
+                + "FROM users "
+                + "WHERE user_id = ?";
+
+        try {
+            conn = getConnection();
+            if (conn == null) {
+                return null;
+            }
+
+            ps = conn.prepareStatement(SQL);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return new User(
+                        rs.getInt("user_id"),
+                        rs.getString("username"),
+                        rs.getString("full_name"),
+                        rs.getString("role"),
+                        rs.getString("status")
+                );
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+            } catch (Exception e) {
+            }
+            try {
+                if (ps != null) {
+                    ps.close();
+                }
+            } catch (Exception e) {
+            }
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (Exception e) {
+            }
+        }
+
+        return null;
+    }
+    
     public static boolean deleteUser(int userId) {
         Connection conn = null;
         PreparedStatement ps = null;

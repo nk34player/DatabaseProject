@@ -2,8 +2,8 @@ C:\Users\NK34\Desktop\Study\3rd Year\Database\DatabaseProject\src\main\java\com\
 C:\Users\NK34\Desktop\Study\3rd Year\Database\DatabaseProject\src\main\java\com\pharmacy\db\CategoriesDB.java
 C:\Users\NK34\Desktop\Study\3rd Year\Database\DatabaseProject\src\main\java\com\pharmacy\db\CustomersDB.java
 C:\Users\NK34\Desktop\Study\3rd Year\Database\DatabaseProject\src\main\java\com\pharmacy\db\DBConnection.java
+C:\Users\NK34\Desktop\Study\3rd Year\Database\DatabaseProject\src\main\java\com\pharmacy\db\InvoicesDB.java
 C:\Users\NK34\Desktop\Study\3rd Year\Database\DatabaseProject\src\main\java\com\pharmacy\db\MedicinesDB.java
-C:\Users\NK34\Desktop\Study\3rd Year\Database\DatabaseProject\src\main\java\com\pharmacy\db\SalesDB.java
 C:\Users\NK34\Desktop\Study\3rd Year\Database\DatabaseProject\src\main\java\com\pharmacy\db\SharedInformation.java
 C:\Users\NK34\Desktop\Study\3rd Year\Database\DatabaseProject\src\main\java\com\pharmacy\db\SuppliersDB.java
 C:\Users\NK34\Desktop\Study\3rd Year\Database\DatabaseProject\src\main\java\com\pharmacy\db\User.java
@@ -12,6 +12,7 @@ C:\Users\NK34\Desktop\Study\3rd Year\Database\DatabaseProject\src\main\java\com\
 C:\Users\NK34\Desktop\Study\3rd Year\Database\DatabaseProject\src\main\java\com\pharmacy\ui\CategoriesEditor.java
 C:\Users\NK34\Desktop\Study\3rd Year\Database\DatabaseProject\src\main\java\com\pharmacy\ui\CustomersEditor.java
 C:\Users\NK34\Desktop\Study\3rd Year\Database\DatabaseProject\src\main\java\com\pharmacy\ui\GradientPanel.java
+C:\Users\NK34\Desktop\Study\3rd Year\Database\DatabaseProject\src\main\java\com\pharmacy\ui\InvoicesEditor.java
 C:\Users\NK34\Desktop\Study\3rd Year\Database\DatabaseProject\src\main\java\com\pharmacy\ui\LoginFrame.java
 C:\Users\NK34\Desktop\Study\3rd Year\Database\DatabaseProject\src\main\java\com\pharmacy\ui\ManagerDashboard.java
 C:\Users\NK34\Desktop\Study\3rd Year\Database\DatabaseProject\src\main\java\com\pharmacy\ui\MedicinesEditor.java
