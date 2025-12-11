@@ -549,9 +549,44 @@ public class SuppliersEditor extends javax.swing.JFrame {
         SharedInformation.getFrame().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
+    private void onViewAllClicked() {
+        if (suppliers != null) {
+            String[] columns = {"ID", "Supplier name", "Company name","Email"};
+            Object[][] rows = new Object[suppliers.size()][3];
 
+            for (int i = 0; i < suppliers.size(); i++) {
+                SuppliersDB.Supplier supplier = suppliers.get(i);
+                rows[i][0] = supplier.getSupplierId();
+                rows[i][1] = supplier.getSupplierName();
+                rows[i][2] = supplier.getCompanyName();
+                rows[i][3] = supplier.getEmail();
+            }
+
+            ViewAllWindow view = new ViewAllWindow(this, "All suppliers", columns, rows, 0);
+
+            int selected = view.showDialog();
+
+            if (selected != -1) {
+                goToSupplier(selected);
+            }
+        }
+    }
+
+    private void goToSupplier(int id) {
+        for (int i = 0; i < suppliers.size(); i++) {
+            if (suppliers.get(i).getSupplierId()== id) {
+                currentIndex = i;
+                currentEdit = false;
+                editFields(false);
+                displaySupplier(currentIndex);
+                updateButtons();
+                return;
+            }
+        }
+        JOptionPane.showMessageDialog(this, "Category not found!", "Error", JOptionPane.ERROR_MESSAGE);
+    }
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        // TODO add your handling code here:
+        onViewAllClicked();
     }//GEN-LAST:event_jButton12ActionPerformed
 
     /**

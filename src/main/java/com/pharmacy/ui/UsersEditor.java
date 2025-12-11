@@ -476,9 +476,44 @@ public class UsersEditor extends javax.swing.JFrame {
         SharedInformation.getFrame().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
+    private void onViewAllClicked() {
+        if (users != null) {
+            String[] columns = {"ID", "Username", "Full name","Role"};
+            Object[][] rows = new Object[users.size()][3];
 
+            for (int i = 0; i < users.size(); i++) {
+                User user = users.get(i);
+                rows[i][0] = user.getId();
+                rows[i][1] = user.getUsername();
+                rows[i][2] = user.getFullName();
+                rows[i][3] = user.getRole();
+            }
+
+            ViewAllWindow view = new ViewAllWindow(this, "All users", columns, rows, 0);
+
+            int selected = view.showDialog();
+
+            if (selected != -1) {
+                goToUser(selected);
+            }
+        }
+    }
+
+    private void goToUser(int id) {
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i).getId()== id) {
+                currentIndex = i;
+                currentEdit = false;
+                editFields(false);
+                displayUser(currentIndex);
+                updateButtons();
+                return;
+            }
+        }
+        JOptionPane.showMessageDialog(this, "Category not found!", "Error", JOptionPane.ERROR_MESSAGE);
+    }
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        // TODO add your handling code here:
+        onViewAllClicked();
     }//GEN-LAST:event_jButton12ActionPerformed
 
     /**

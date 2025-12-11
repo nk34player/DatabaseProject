@@ -107,10 +107,10 @@ public class CategoriesEditor extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setText("Username:");
+        jLabel1.setText("Category:");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setText("Full name:");
+        jLabel2.setText("Description:");
 
         jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextField1.setText("jTextField1");
@@ -336,9 +336,43 @@ public class CategoriesEditor extends javax.swing.JFrame {
         usernameLabel.setText("Loggined as: " + SharedInformation.getUsername());
         initialRun();
     }//GEN-LAST:event_formWindowOpened
+    private void onViewAllClicked() {
+        if (categories != null) {
+            String[] columns = {"ID", "Category", "Description"};
+            Object[][] rows = new Object[categories.size()][3];
 
+            for (int i = 0; i < categories.size(); i++) {
+                Category cat = categories.get(i);
+                rows[i][0] = cat.getCategoryId();
+                rows[i][1] = cat.getCategoryName();
+                rows[i][2] = cat.getDescription();
+            }
+
+            ViewAllWindow view = new ViewAllWindow(this, "All categories", columns, rows, 0);
+
+            int selected = view.showDialog();
+
+            if (selected != -1) {
+                goToCategory(selected);
+            }
+        }
+    }
+
+    private void goToCategory(int id) {
+        for (int i = 0; i < categories.size(); i++) {
+            if (categories.get(i).getCategoryId() == id) {
+                currentIndex = i;
+                currentEdit = false;
+                editFields(false);
+                displayCategory(currentIndex);
+                updateButtons();
+                return;
+            }
+        }
+        JOptionPane.showMessageDialog(this, "Category not found!", "Error", JOptionPane.ERROR_MESSAGE);
+    }
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        // TODO add your handling code here:
+        onViewAllClicked();
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed

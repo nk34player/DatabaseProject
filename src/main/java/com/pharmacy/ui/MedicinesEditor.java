@@ -416,9 +416,44 @@ public class MedicinesEditor extends javax.swing.JFrame {
         usernameLabel.setText("Loggined as: " + SharedInformation.getUsername());
         initialRun();
     }//GEN-LAST:event_formWindowOpened
+    private void onViewAllClicked() {
+        if (medicines != null) {
+            String[] columns = {"ID", "Medicine name", "Category","Production company"};
+            Object[][] rows = new Object[medicines.size()][3];
 
+            for (int i = 0; i < medicines.size(); i++) {
+                MedicinesDB.Medicine medicine = medicines.get(i);
+                rows[i][0] = medicine.getMedicineId();
+                rows[i][1] = medicine.getMedicineName();
+                rows[i][2] = CategoriesDB.getCategoryNameById(medicine.getCategoryId());
+                rows[i][3] = medicine.getCompanyName();
+            }
+
+            ViewAllWindow view = new ViewAllWindow(this, "All medicines", columns, rows, 0);
+
+            int selected = view.showDialog();
+
+            if (selected != -1) {
+                goToMedicine(selected);
+            }
+        }
+    }
+
+    private void goToMedicine(int id) {
+        for (int i = 0; i < medicines.size(); i++) {
+            if (medicines.get(i).getMedicineId()== id) {
+                currentIndex = i;
+                currentEdit = false;
+                editFields(false);
+                displayMedicine(currentIndex);
+                updateButtons();
+                return;
+            }
+        }
+        JOptionPane.showMessageDialog(this, "Category not found!", "Error", JOptionPane.ERROR_MESSAGE);
+    }
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        // TODO add your handling code here:
+        onViewAllClicked();
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
