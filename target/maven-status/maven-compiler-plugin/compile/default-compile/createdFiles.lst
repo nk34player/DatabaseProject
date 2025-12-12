@@ -7,6 +7,7 @@ com\pharmacy\ui\LoginFrame$2.class
 com\pharmacy\ui\SuppliersEditor$2.class
 com\pharmacy\ui\ManagerDashboard$10.class
 com\pharmacy\ui\MedicinesEditor$1.class
+com\pharmacy\ui\PurchasePrompt$3.class
 com\pharmacy\db\UsersDB.class
 com\pharmacy\ui\SalesPage$1.class
 com\pharmacy\ui\ManagerDashboard$4.class
@@ -21,10 +22,12 @@ com\pharmacy\ui\SalesPage$CartItem.class
 com\pharmacy\db\CustomersDB.class
 com\pharmacy\ui\ProductTemplate$2.class
 com\pharmacy\ui\CashierDashboard$2.class
+com\pharmacy\ui\PurchasePrompt$SalesListener.class
 com\pharmacy\ui\CategoriesEditor$9.class
 com\pharmacy\ui\MedicinesEditor$7.class
 com\pharmacy\ui\MedicinesEditor.class
 com\pharmacy\ui\UsersEditor$6.class
+com\pharmacy\ui\PurchasePrompt$3$1.class
 com\pharmacy\ui\UsersEditor$2.class
 com\pharmacy\ui\CustomersEditor$8.class
 com\pharmacy\ui\UsersEditor$9.class
@@ -40,10 +43,12 @@ com\pharmacy\ui\SuppliersEditor$3.class
 com\pharmacy\db\MedicinesDB$Medicine.class
 com\pharmacy\ui\MedicinesEditor$3.class
 com\pharmacy\ui\CustomersEditor$2.class
+com\pharmacy\ui\PurchasePrompt$1.class
 com\pharmacy\ui\CashierDashboard.class
 com\pharmacy\ui\SalesPage$4.class
 com\pharmacy\ui\LoginFrame$1.class
 com\pharmacy\ui\ManagerDashboard.class
+com\pharmacy\ui\PurchasePrompt$2.class
 com\pharmacy\ui\CategoriesEditor$7.class
 com\pharmacy\ui\CustomersEditor$9.class
 com\pharmacy\db\SharedInformation.class
@@ -75,6 +80,7 @@ com\pharmacy\ui\ProductTemplate$CartListener.class
 com\pharmacy\db\InvoicesDB$InvoiceDetail.class
 com\pharmacy\ui\PharmacistDashboard$1.class
 com\pharmacy\ui\SuppliersEditor$6.class
+com\pharmacy\ui\PurchasePrompt$4.class
 com\pharmacy\ui\CategoriesEditor$3.class
 com\pharmacy\ui\ViewAllWindow.class
 com\pharmacy\ui\CustomersEditor.class
@@ -87,6 +93,7 @@ com\pharmacy\ui\RegisterFrame$3.class
 com\pharmacy\ui\SalesPage$2.class
 com\pharmacy\db\SuppliersDB.class
 com\pharmacy\ui\CategoriesEditor$6.class
+com\pharmacy\ui\PurchasePrompt.class
 com\pharmacy\db\User.class
 com\pharmacy\ui\SalesPage$5.class
 com\pharmacy\db\SuppliersDB$Supplier.class
@@ -122,5 +129,6 @@ com\pharmacy\ui\CustomersEditor$6.class
 com\pharmacy\ui\ViewAllWindow$2.class
 com\pharmacy\ui\PharmacistDashboard$3.class
 com\pharmacy\ui\SuppliersEditor$10.class
+com\pharmacy\ui\PurchasePrompt$5.class
 com\pharmacy\ui\ProductTemplate.class
 com\pharmacy\ui\LoginFrame.class

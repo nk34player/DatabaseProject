@@ -83,6 +83,8 @@ public class ProductTemplate extends javax.swing.JPanel {
         jButton2 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setMaximumSize(new java.awt.Dimension(353, 142));
+        setMinimumSize(new java.awt.Dimension(353, 142));
 
         jButton1.setBackground(new java.awt.Color(255, 0, 255));
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -140,7 +142,7 @@ public class ProductTemplate extends javax.swing.JPanel {
                                 .addComponent(priceLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );

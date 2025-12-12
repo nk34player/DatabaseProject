@@ -225,7 +225,6 @@ public class SalesPage extends javax.swing.JFrame {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Sales Page");
 
-        jPanel2.setLayout(new java.awt.GridLayout(0, 2, 10, 10));
         jScrollPane1.setViewportView(jPanel2);
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -251,7 +250,7 @@ public class SalesPage extends javax.swing.JFrame {
         jButton9.setBackground(new java.awt.Color(255, 0, 255));
         jButton9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton9.setForeground(new java.awt.Color(255, 255, 255));
-        jButton9.setText("Finish");
+        jButton9.setText("Next");
         jButton9.setToolTipText("");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
