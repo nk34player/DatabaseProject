@@ -206,13 +206,60 @@ public class CustomersDB {
         return null;
     }
 
+    public static Integer getCustomerIdByName(String fullName) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        final String SQL = "SELECT customer_id FROM customers WHERE full_name = ? LIMIT 1";
+
+        try {
+            conn = getConnection();
+            if (conn == null) {
+                return null;
+            }
+
+            ps = conn.prepareStatement(SQL);
+            ps.setString(1, fullName);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt("customer_id");
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+            } catch (Exception e) {
+            }
+            try {
+                if (ps != null) {
+                    ps.close();
+                }
+            } catch (Exception e) {
+            }
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (Exception e) {
+            }
+        }
+
+        return null;
+    }
+
     public static boolean addCustomer(Customer customer) {
         Connection conn = null;
         PreparedStatement ps = null;
 
         final String INSERT_SQL
-                = "INSERT INTO customers (full_name, phone, email, street_address, city) "
-                + "VALUES (?, ?, ?, ?, ?)";
+                = "INSERT INTO customers (full_name, phone, email, street_address, city, registered_date) "
+                + "VALUES (?, ?, ?, ?, ?, CURRENT_TIMESTAMP)";
 
         try {
             conn = getConnection();

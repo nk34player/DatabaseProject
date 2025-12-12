@@ -271,7 +271,55 @@ public class UsersDB {
 
         return null;
     }
-    
+
+    public static Integer getUserIdByUsername(String username) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        final String SQL = "SELECT user_id FROM users WHERE username = ?";
+
+        try {
+            conn = getConnection();
+            if (conn == null) {
+                return null;
+            }
+
+            ps = conn.prepareStatement(SQL);
+            ps.setString(1, username);
+
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt("user_id");
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+            } catch (Exception e) {
+            }
+            try {
+                if (ps != null) {
+                    ps.close();
+                }
+            } catch (Exception e) {
+            }
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (Exception e) {
+            }
+        }
+
+        return null;
+    }
+
     public static boolean deleteUser(int userId) {
         Connection conn = null;
         PreparedStatement ps = null;

@@ -24,6 +24,7 @@ public class UsersEditor extends javax.swing.JFrame {
      */
     public UsersEditor() {
         initComponents();
+        initialRun();
     }
 
     /**
@@ -394,7 +395,6 @@ public class UsersEditor extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         usernameLabel.setText("Loggined as: " + SharedInformation.getUsername());
-        initialRun();
     }//GEN-LAST:event_formWindowOpened
     private void changeStatus() {
         User curUser = users.get(currentIndex);

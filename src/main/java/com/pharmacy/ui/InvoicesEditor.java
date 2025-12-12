@@ -31,6 +31,7 @@ public class InvoicesEditor extends javax.swing.JFrame {
      */
     public InvoicesEditor() {
         initComponents();
+        initialRun();
     }
 
     /**
@@ -396,12 +397,11 @@ public class InvoicesEditor extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         usernameLabel.setText("Loggined as: " + SharedInformation.getUsername());
-        initialRun();
     }//GEN-LAST:event_formWindowOpened
     private void onViewAllClicked() {
         if (invoices != null) {
-            String[] columns = {"ID", "User", "Customer", "Total amount"};
-            Object[][] rows = new Object[invoices.size()][4];
+            String[] columns = {"ID", "User", "Customer", "Total amount", "Invoice Date"};
+            Object[][] rows = new Object[invoices.size()][5];
 
             for (int i = 0; i < invoices.size(); i++) {
                 InvoicesDB.Invoice invoice = invoices.get(i);
@@ -409,6 +409,7 @@ public class InvoicesEditor extends javax.swing.JFrame {
                 rows[i][1] = UsersDB.getUserById(invoice.getUserId()).getFullName();
                 rows[i][2] = CustomersDB.getCustomerById(invoice.getCustomerId()).getFullName();
                 rows[i][3] = invoice.getTotalAmount();
+                rows[i][4] = invoice.getInvoiceDate();
             }
 
             ViewAllWindow view = new ViewAllWindow(this, "All users", columns, rows, 0);

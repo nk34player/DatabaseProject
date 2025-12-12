@@ -5,10 +5,14 @@
 package com.pharmacy.db;
 
 import static com.pharmacy.db.DBConnection.getConnection;
+import com.pharmacy.db.MedicinesDB.Medicine;
+import com.pharmacy.ui.SalesPage.CartItem;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +27,7 @@ public class InvoicesDB {
         private double totalAmount;
         private String paymentMethod;
 
-        private List<InvoiceDetail> details;  // <-- Already loaded!
+        private List<InvoiceDetail> details;
 
         public Invoice(int invoiceId, int customerId, int userId,
                 String invoiceDate, double totalAmount, String paymentMethod) {
@@ -191,19 +195,16 @@ public class InvoicesDB {
                 return false;
             }
 
-            conn.setAutoCommit(false); // START TRANSACTION
+            conn.setAutoCommit(false);
 
-            // Step 1: Delete all invoice details
             psDetails = conn.prepareStatement(DELETE_DETAILS_SQL);
             psDetails.setInt(1, invoiceId);
             psDetails.executeUpdate();
 
-            // Step 2: Delete invoice row
             psInvoice = conn.prepareStatement(DELETE_INVOICE_SQL);
             psInvoice.setInt(1, invoiceId);
             int invoiceDeleted = psInvoice.executeUpdate();
 
-            // If the invoice was actually deleted, commit
             conn.commit();
             return invoiceDeleted > 0;
 
@@ -244,4 +245,109 @@ public class InvoicesDB {
             }
         }
     }
+
+    public static int createInvoice(int customerId, int userId, String paymentMethod, List<CartItem> cart) throws SQLException {
+        Connection conn = null;
+        PreparedStatement invoiceStmt = null;
+        PreparedStatement detailStmt = null;
+        PreparedStatement stockStmt = null;
+        ResultSet rs = null;
+        int invoiceId = -1;
+
+        String insertInvoiceSQL = "INSERT INTO sales_invoices (customer_id, user_id,payment_method, total_amount, invoice_date) VALUES (?,?, ?, ?, NOW())";
+        String insertDetailSQL = "INSERT INTO sales_details (invoice_id, medicine_id, quantity, unit_price) VALUES (?, ?, ?, ?)";
+        String updateStockSQL = "UPDATE medicines SET stock_quantity = stock_quantity - ? WHERE medicine_id = ? AND stock_quantity >= ?";
+
+        try {
+            conn = DBConnection.getConnection();
+            if (conn == null) {
+                throw new SQLException("Unable to obtain DB connection");
+            }
+            conn.setAutoCommit(false);
+
+            double totalPrice = 0.0;
+            for (CartItem item : cart) {
+                totalPrice += item.getMedicine().getUnitPrice() * item.getQuantity();
+            }
+
+            invoiceStmt = conn.prepareStatement(insertInvoiceSQL, Statement.RETURN_GENERATED_KEYS);
+            invoiceStmt.setInt(1, customerId);
+            invoiceStmt.setInt(2, userId);
+            invoiceStmt.setString(3, paymentMethod);
+            invoiceStmt.setDouble(4, totalPrice);
+            invoiceStmt.executeUpdate();
+
+            rs = invoiceStmt.getGeneratedKeys();
+            if (rs.next()) {
+                invoiceId = rs.getInt(1);
+            } else {
+                conn.rollback();
+                throw new SQLException("Failed to retrieve generated invoice id");
+            }
+
+            detailStmt = conn.prepareStatement(insertDetailSQL);
+            stockStmt = conn.prepareStatement(updateStockSQL);
+
+            for (CartItem item : cart) {
+                int medId = item.getMedicine().getMedicineId();
+                int qty = item.getQuantity();
+                double unitPrice = item.getMedicine().getUnitPrice();
+
+                detailStmt.setInt(1, invoiceId);
+                detailStmt.setInt(2, medId);
+                detailStmt.setInt(3, qty);
+                detailStmt.setDouble(4, unitPrice);
+                detailStmt.addBatch();
+            }
+
+            detailStmt.executeBatch();
+
+            for (CartItem item : cart) {
+                int medId = item.getMedicine().getMedicineId();
+                int qty = item.getQuantity();
+
+                stockStmt.setInt(1, qty);
+                stockStmt.setInt(2, medId);
+                stockStmt.setInt(3, qty);
+                int updated = stockStmt.executeUpdate();
+                if (updated == 0) {
+                    conn.rollback();
+                    throw new SQLException("Insufficient stock for medicine_id=" + medId);
+                }
+            }
+
+            conn.commit();
+            return invoiceId;
+
+        } catch (SQLException ex) {
+            if (conn != null) try {
+                conn.rollback();
+            } catch (SQLException ignore) {
+            }
+            throw ex;
+        } finally {
+            if (rs != null) try {
+                rs.close();
+            } catch (SQLException ignore) {
+            }
+            if (invoiceStmt != null) try {
+                invoiceStmt.close();
+            } catch (SQLException ignore) {
+            }
+            if (detailStmt != null) try {
+                detailStmt.close();
+            } catch (SQLException ignore) {
+            }
+            if (stockStmt != null) try {
+                stockStmt.close();
+            } catch (SQLException ignore) {
+            }
+            if (conn != null) try {
+                conn.setAutoCommit(true);
+                conn.close();
+            } catch (SQLException ignore) {
+            }
+        }
+    }
+
 }

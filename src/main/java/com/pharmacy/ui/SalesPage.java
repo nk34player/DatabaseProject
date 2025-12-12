@@ -4,9 +4,11 @@
  */
 package com.pharmacy.ui;
 
+import com.pharmacy.db.InvoicesDB;
 import com.pharmacy.db.MedicinesDB;
 import com.pharmacy.db.MedicinesDB.Medicine;
 import com.pharmacy.db.SharedInformation;
+import com.pharmacy.db.UsersDB;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,49 +34,49 @@ public class SalesPage extends javax.swing.JFrame {
     private double totalPrice = 0;
     private List<CartItem> cart = new ArrayList<>();
     private Timer searchTimer;
-
+    
     public class CartItem {
-
+        
         private Medicine medicine;
         private int quantity;
-
+        
         public CartItem(Medicine medicine, int quantity) {
             this.medicine = medicine;
             this.quantity = quantity;
         }
-
+        
         public Medicine getMedicine() {
             return medicine;
         }
-
+        
         public int getQuantity() {
             return quantity;
         }
-
+        
         public void setQuantity(int quantity) {
             this.quantity = quantity;
         }
-
+        
         public double getTotalPrice() {
             return medicine.getUnitPrice() * quantity;
         }
     }
     private List<ProductTemplate> cardList = new ArrayList<>();
-
+    
     private void createProducts() {
         jPanel2.removeAll();
         cardList.clear();
         jPanel2.setLayout(new GridLayout(0, 2, 10, 10));
-
+        
         List<Medicine> medicines = MedicinesDB.getAllMedicines();
-
+        
         for (Medicine med : medicines) {
             ProductTemplate card = new ProductTemplate(med, new ProductTemplate.CartListener() {
                 @Override
                 public void onAdd(ProductTemplate card, Medicine medicine, int quantity) {
                     addMedicineToCart(card, medicine, quantity);
                 }
-
+                
                 @Override
                 public void onRemove(ProductTemplate card, Medicine medicine) {
                     removeMedicineFromCart(card, medicine);
@@ -83,11 +85,11 @@ public class SalesPage extends javax.swing.JFrame {
             jPanel2.add(card);
             cardList.add(card);
         }
-
+        
         jPanel2.revalidate();
         jPanel2.repaint();
     }
-
+    
     private void updateTotalPrice() {
         double total = 0.0;
         if (!cart.isEmpty()) {
@@ -95,26 +97,26 @@ public class SalesPage extends javax.swing.JFrame {
             for (CartItem item : cart) {
                 total += item.getTotalPrice();
             }
-            totalPrice = total;
-            jLabel1.setText("Total Price: " + total);
         } else {
-            jLabel1.setText("Total Price: " + total);
+            
             jButton9.setEnabled(false);
         }
-
+        totalPrice = total;
+        jLabel1.setText("Total Price: " + total);
+        
     }
-
+    
     private void addMedicineToCart(ProductTemplate card, Medicine medicine, int quantity) {
         if (quantity > medicine.getStockQuantity()) {
             JOptionPane.showMessageDialog(this,
                     "You cannot add more than the available stock: " + medicine.getStockQuantity());
             return;
         }
-
+        
         for (CartItem item : cart) {
             int totalRequested = item.getQuantity() + quantity;
             if (item.getMedicine().getMedicineId() == medicine.getMedicineId()) {
-
+                
                 if (totalRequested > medicine.getStockQuantity()) {
                     JOptionPane.showMessageDialog(this,
                             "Total quantity exceeds available stock (" + medicine.getStockQuantity() + ")");
@@ -126,12 +128,12 @@ public class SalesPage extends javax.swing.JFrame {
                 return;
             }
         }
-
+        
         cart.add(new CartItem(medicine, quantity));
         card.updateOrderedAmount(quantity);
         updateTotalPrice();
     }
-
+    
     private void removeMedicineFromCart(ProductTemplate card, Medicine medicine) {
         for (CartItem item : cart) {
             if (item.getMedicine().getMedicineId() == medicine.getMedicineId()) {
@@ -144,32 +146,38 @@ public class SalesPage extends javax.swing.JFrame {
             }
         }
     }
-
+    
+    private void emptyCart() {
+        cart.clear();
+        createProducts();
+        updateTotalPrice();
+    }
+    
     private void autoSearchHelper() {
         jTextField1.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
                 debounce();
             }
-
+            
             @Override
             public void removeUpdate(DocumentEvent e) {
                 debounce();
             }
-
+            
             @Override
             public void changedUpdate(DocumentEvent e) {
                 debounce();
             }
-
+            
             private void filterProducts() {
                 String text = jTextField1.getText().trim().toLowerCase();
-
+                
                 jPanel2.removeAll();
-
+                
                 for (ProductTemplate card : cardList) {
                     String medName = card.getMedicine().getMedicineName().toLowerCase();
-
+                    
                     if (medName.contains(text)) {
                         jPanel2.add(card);
                     }
@@ -177,7 +185,7 @@ public class SalesPage extends javax.swing.JFrame {
                 jPanel2.revalidate();
                 jPanel2.repaint();
             }
-
+            
             private void debounce() {
                 if (searchTimer != null && searchTimer.isRunning()) {
                     searchTimer.restart();
@@ -190,10 +198,10 @@ public class SalesPage extends javax.swing.JFrame {
                     searchTimer.start();
                 }
             }
-
+            
         });
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -352,9 +360,25 @@ public class SalesPage extends javax.swing.JFrame {
         SharedInformation.getFrame().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton8ActionPerformed
-
+    private void createPurchasePrompt() {
+        PurchasePrompt prompt = new PurchasePrompt(this, totalPrice, new PurchasePrompt.SalesListener() {
+            @Override
+            public void onFinish(Integer customer_id, String payment) {
+                try {
+                    int invoiceId = InvoicesDB.createInvoice(customer_id, UsersDB.getUserIdByUsername(SharedInformation.getUsername()), payment, cart);
+                    
+                    JOptionPane.showMessageDialog(SalesPage.this,
+                            "Purchase Completed! Invoice ID: " + invoiceId);
+                    emptyCart();
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(SalesPage.this, "Error: " + ex.getMessage());
+                }
+            }
+        });
+        prompt.setVisible(true);
+    }
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
+        createPurchasePrompt();
     }//GEN-LAST:event_jButton9ActionPerformed
 
     /**

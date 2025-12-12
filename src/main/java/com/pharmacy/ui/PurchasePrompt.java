@@ -5,6 +5,7 @@
 package com.pharmacy.ui;
 
 import com.pharmacy.db.CustomersDB;
+import com.pharmacy.db.CustomersDB.Customer;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -35,7 +36,7 @@ public class PurchasePrompt extends javax.swing.JDialog {
 
     public interface SalesListener {
 
-        void onFinish(String customer_name, String payment);
+        void onFinish(Integer customer_id, String payment);
     }
 
     private void loadData() {
@@ -56,7 +57,7 @@ public class PurchasePrompt extends javax.swing.JDialog {
         setupAutoCompleteForComboBox(jComboBox1);
     }
 
-    public PurchasePrompt(java.awt.Frame parent, Double price,SalesListener listener) {
+    public PurchasePrompt(java.awt.Frame parent, Double price, SalesListener listener) {
         super(parent, true);
         initComponents();
         this.listener = listener;
@@ -64,7 +65,6 @@ public class PurchasePrompt extends javax.swing.JDialog {
         loadData();
         setupAutoCompleteForComboBox(jComboBox1);
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -189,7 +189,68 @@ public class PurchasePrompt extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if (jComboBox2.getSelectedIndex() != -1) {
-            JOptionPane.showMessageDialog(this, jComboBox1.getSelectedIndex());
+            if (jComboBox1.getSelectedIndex() != -1) {
+                listener.onFinish(CustomersDB.getCustomerIdByName(jComboBox1.getSelectedItem().toString()), jComboBox2.getSelectedItem().toString());
+            } else {
+                int msg = JOptionPane.showConfirmDialog(this, "Do you like to create a customer with this name?", "No customer found", JOptionPane.YES_NO_OPTION);
+                if (msg == JOptionPane.YES_OPTION) {
+                    String fullName = jComboBox1.getEditor().getItem().toString();
+                    String email;
+                    while (true) {
+                        email = JOptionPane.showInputDialog(this, "Enter email:");
+                        if (email == null) {
+                            return;
+                        }
+                        if (email.isEmpty()) {
+                            JOptionPane.showMessageDialog(this, "Email is required", "Validation Error", JOptionPane.ERROR_MESSAGE);
+                            continue;
+                        }
+                        if (!email.matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
+                            JOptionPane.showMessageDialog(this, "Invalid email format", "Validation Error", JOptionPane.ERROR_MESSAGE);
+                            continue;
+                        }
+                        break;
+                    }
+                    String phone;
+                    while (true) {
+                        phone = JOptionPane.showInputDialog(this, "Enter phone number:");
+                        if (phone == null) {
+                            return;
+                        }
+                        if (phone.isEmpty()) {
+                            JOptionPane.showMessageDialog(this, "Phone number is required", "Validation Error", JOptionPane.ERROR_MESSAGE);
+                            continue;
+                        }
+                        if (!phone.matches("^\\d{3}-?\\d{3}-?\\d{4}$")) {
+                            JOptionPane.showMessageDialog(this, "Invalid phone number format", "Validation Error", JOptionPane.ERROR_MESSAGE);
+                            continue;
+                        }
+                        break;
+                    }
+
+                    Customer newCustomer = new Customer(
+                            0,
+                            fullName,
+                            phone,
+                            email,
+                            "",
+                            "",
+                            ""
+                    );
+
+                    if (CustomersDB.addCustomer(newCustomer)) {
+                        Integer newId = CustomersDB.getCustomerIdByName(fullName);
+
+                        listener.onFinish(
+                                newId,
+                                jComboBox2.getSelectedItem().toString()
+                        );
+
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Failed to add customer", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

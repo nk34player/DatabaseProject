@@ -24,6 +24,7 @@ public class CategoriesEditor extends javax.swing.JFrame {
      */
     public CategoriesEditor() {
         initComponents();
+        initialRun();
     }
 
     /**
@@ -334,7 +335,6 @@ public class CategoriesEditor extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         usernameLabel.setText("Loggined as: " + SharedInformation.getUsername());
-        initialRun();
     }//GEN-LAST:event_formWindowOpened
     private void onViewAllClicked() {
         if (categories != null) {

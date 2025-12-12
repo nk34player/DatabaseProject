@@ -23,6 +23,7 @@ public class SuppliersEditor extends javax.swing.JFrame {
      */
     public SuppliersEditor() {
         initComponents();
+        initialRun();
     }
 
     /**
@@ -452,7 +453,6 @@ public class SuppliersEditor extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         usernameLabel.setText("Loggined as: " + SharedInformation.getUsername());
-        initialRun();
     }//GEN-LAST:event_formWindowOpened
     private void changeStatus() {
         SuppliersDB.Supplier currentSupplier = suppliers.get(currentIndex);

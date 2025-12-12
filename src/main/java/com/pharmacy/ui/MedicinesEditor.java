@@ -27,6 +27,7 @@ public class MedicinesEditor extends javax.swing.JFrame {
      */
     public MedicinesEditor() {
         initComponents();
+        initialRun();
     }
 
     /**
@@ -414,7 +415,6 @@ public class MedicinesEditor extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         usernameLabel.setText("Loggined as: " + SharedInformation.getUsername());
-        initialRun();
     }//GEN-LAST:event_formWindowOpened
     private void onViewAllClicked() {
         if (medicines != null) {

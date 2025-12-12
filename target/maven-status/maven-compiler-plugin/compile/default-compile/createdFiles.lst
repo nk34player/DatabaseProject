@@ -65,6 +65,7 @@ com\pharmacy\ui\CustomersEditor$3.class
 com\pharmacy\ui\ManagerDashboard$8.class
 com\pharmacy\ui\UsersEditor$4.class
 com\pharmacy\ui\UsersEditor$7.class
+com\pharmacy\ui\SalesPage$8.class
 com\pharmacy\db\CustomersDB$Customer.class
 com\pharmacy\ui\PharmacistDashboard$4.class
 com\pharmacy\ui\InvoicesEditor$7.class

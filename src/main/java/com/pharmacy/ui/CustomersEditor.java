@@ -23,6 +23,7 @@ public class CustomersEditor extends javax.swing.JFrame {
      */
     public CustomersEditor() {
         initComponents();
+        initialRun();
     }
 
     /**
@@ -408,7 +409,6 @@ public class CustomersEditor extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         usernameLabel.setText("Loggined as: " + SharedInformation.getUsername());
-        initialRun();
     }//GEN-LAST:event_formWindowOpened
     private void onViewAllClicked() {
         if (customers != null) {
