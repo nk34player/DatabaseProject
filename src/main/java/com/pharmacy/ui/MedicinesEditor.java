@@ -419,7 +419,7 @@ public class MedicinesEditor extends javax.swing.JFrame {
     private void onViewAllClicked() {
         if (medicines != null) {
             String[] columns = {"ID", "Medicine name", "Category","Production company"};
-            Object[][] rows = new Object[medicines.size()][3];
+            Object[][] rows = new Object[medicines.size()][4];
 
             for (int i = 0; i < medicines.size(); i++) {
                 MedicinesDB.Medicine medicine = medicines.get(i);

@@ -398,9 +398,44 @@ public class InvoicesEditor extends javax.swing.JFrame {
         usernameLabel.setText("Loggined as: " + SharedInformation.getUsername());
         initialRun();
     }//GEN-LAST:event_formWindowOpened
+    private void onViewAllClicked() {
+        if (invoices != null) {
+            String[] columns = {"ID", "User", "Customer", "Total amount"};
+            Object[][] rows = new Object[invoices.size()][4];
 
+            for (int i = 0; i < invoices.size(); i++) {
+                InvoicesDB.Invoice invoice = invoices.get(i);
+                rows[i][0] = invoice.getInvoiceId();
+                rows[i][1] = UsersDB.getUserById(invoice.getUserId()).getFullName();
+                rows[i][2] = CustomersDB.getCustomerById(invoice.getCustomerId()).getFullName();
+                rows[i][3] = invoice.getTotalAmount();
+            }
+
+            ViewAllWindow view = new ViewAllWindow(this, "All users", columns, rows, 0);
+
+            int selected = view.showDialog();
+
+            if (selected != -1) {
+                goToInvoice(selected);
+            }
+        }
+    }
+
+    private void goToInvoice(int id) {
+        for (int i = 0; i < invoices.size(); i++) {
+            if (invoices.get(i).getInvoiceId() == id) {
+                currentIndex = i;
+                currentEdit = false;
+                editFields(false);
+                displayInvoice(currentIndex);
+                updateButtons();
+                return;
+            }
+        }
+        JOptionPane.showMessageDialog(this, "Category not found!", "Error", JOptionPane.ERROR_MESSAGE);
+    }
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        // TODO add your handling code here:
+        onViewAllClicked();
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
@@ -455,7 +490,7 @@ public class InvoicesEditor extends javax.swing.JFrame {
         jButton7.setEnabled(currentIndex > 0);
         jButton6.setEnabled(currentIndex < invoices.size() - 1);
     }
-    
+
     public void previousInvoice() {
         if (currentIndex > 0) {
             currentIndex--;

@@ -552,7 +552,7 @@ public class SuppliersEditor extends javax.swing.JFrame {
     private void onViewAllClicked() {
         if (suppliers != null) {
             String[] columns = {"ID", "Supplier name", "Company name","Email"};
-            Object[][] rows = new Object[suppliers.size()][3];
+            Object[][] rows = new Object[suppliers.size()][4];
 
             for (int i = 0; i < suppliers.size(); i++) {
                 SuppliersDB.Supplier supplier = suppliers.get(i);

@@ -479,7 +479,7 @@ public class UsersEditor extends javax.swing.JFrame {
     private void onViewAllClicked() {
         if (users != null) {
             String[] columns = {"ID", "Username", "Full name","Role"};
-            Object[][] rows = new Object[users.size()][3];
+            Object[][] rows = new Object[users.size()][4];
 
             for (int i = 0; i < users.size(); i++) {
                 User user = users.get(i);

@@ -33,6 +33,7 @@ com\pharmacy\ui\InvoicesEditor.class
 com\pharmacy\db\DBConnection.class
 com\pharmacy\ui\CashierDashboard$1.class
 com\pharmacy\ui\SalesPage$3.class
+com\pharmacy\ui\ViewAllWindow$2$1.class
 com\pharmacy\ui\ManagerDashboard$6.class
 com\pharmacy\ui\CategoriesEditor$2.class
 com\pharmacy\ui\SuppliersEditor$3.class
@@ -69,11 +70,13 @@ com\pharmacy\ui\UsersEditor.class
 com\pharmacy\db\MedicinesDB.class
 com\pharmacy\ui\CashierDashboard$3.class
 com\pharmacy\ui\SuppliersEditor.class
+com\pharmacy\ui\ViewAllWindow$1.class
 com\pharmacy\ui\ProductTemplate$CartListener.class
 com\pharmacy\db\InvoicesDB$InvoiceDetail.class
 com\pharmacy\ui\PharmacistDashboard$1.class
 com\pharmacy\ui\SuppliersEditor$6.class
 com\pharmacy\ui\CategoriesEditor$3.class
+com\pharmacy\ui\ViewAllWindow.class
 com\pharmacy\ui\CustomersEditor.class
 com\pharmacy\ui\GradientPanel.class
 com\pharmacy\ui\InvoicesEditor$4.class
@@ -116,6 +119,7 @@ com\pharmacy\ui\ManagerDashboard$2.class
 com\pharmacy\ui\SalesPage$7.class
 com\pharmacy\ui\LoginFrame$4.class
 com\pharmacy\ui\CustomersEditor$6.class
+com\pharmacy\ui\ViewAllWindow$2.class
 com\pharmacy\ui\PharmacistDashboard$3.class
 com\pharmacy\ui\SuppliersEditor$10.class
 com\pharmacy\ui\ProductTemplate.class

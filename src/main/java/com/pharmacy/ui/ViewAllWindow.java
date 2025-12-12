@@ -33,7 +33,10 @@ public class ViewAllWindow extends javax.swing.JDialog {
             int idColumnIndex) {
         super(parent, title, true);
         this.idColumnIndex = idColumnIndex;
+        initComponents();
         model = new DefaultTableModel(rowData, columnNames);
+        jTable1.setModel(model);
+        jTable1.setDefaultEditor(Object.class, null);
         jTable1.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent evt) {
@@ -46,7 +49,6 @@ public class ViewAllWindow extends javax.swing.JDialog {
                 }
             }
         });
-        initComponents();
     }
 
     public int showDialog() {
