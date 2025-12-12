@@ -72,7 +72,7 @@ public class CategoriesEditor extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Users");
+        jLabel4.setText("Categories");
 
         jButton5.setBackground(new java.awt.Color(255, 0, 255));
         jButton5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
