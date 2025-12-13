@@ -49,13 +49,13 @@ public class UsersEditor extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Manager Dashboard");
@@ -129,9 +129,6 @@ public class UsersEditor extends javax.swing.JFrame {
         jTextField2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextField2.setText("jTextField1");
 
-        jTextField3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField3.setText("jTextField1");
-
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 0, 0));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -192,6 +189,9 @@ public class UsersEditor extends javax.swing.JFrame {
             }
         });
 
+        jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pharmacist", "Cashier", "Admin" }));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -213,8 +213,8 @@ public class UsersEditor extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -264,10 +264,10 @@ public class UsersEditor extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(52, 52, 52)
+                .addGap(53, 53, 53)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(46, 46, 46)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -324,7 +324,7 @@ public class UsersEditor extends javax.swing.JFrame {
     private void clearFields() {
         jTextField1.setText("");
         jTextField2.setText("");
-        jTextField3.setText("");
+        jComboBox1.setSelectedIndex(-1);
         jLabel6.setText("Inactive");
         jLabel6.setForeground(Color.RED);
     }
@@ -335,13 +335,13 @@ public class UsersEditor extends javax.swing.JFrame {
             jButton8.setEnabled(false);
             jTextField1.setEditable(true);
             jTextField2.setEditable(true);
-            jTextField3.setEditable(true);
+            jComboBox1.setEnabled(true);
         } else {
             jButton9.setEnabled(false);
             jButton8.setEnabled(true);
             jTextField1.setEditable(false);
             jTextField2.setEditable(false);
-            jTextField3.setEditable(false);
+           jComboBox1.setEnabled(false);
         }
     }
 
@@ -350,7 +350,7 @@ public class UsersEditor extends javax.swing.JFrame {
             User user = users.get(index);
             jTextField1.setText(user.getUsername());
             jTextField2.setText(user.getFullName());
-            jTextField3.setText(user.getRole());
+            jComboBox1.setSelectedItem(user.getRole());
             jLabel6.setText(user.getAccountStatus());
 
             if ("Active".equalsIgnoreCase(user.getAccountStatus())) {
@@ -427,7 +427,7 @@ public class UsersEditor extends javax.swing.JFrame {
         if (curUser != null) {
             curUser.setUsername(jTextField1.getText());
             curUser.setFullName(jTextField2.getText());
-            curUser.setRole(jTextField3.getText());
+            curUser.setRole((String) jComboBox1.getSelectedItem());
             UsersDB.updateUser(curUser);
             currentEdit = false;
             editFields(currentEdit);
@@ -564,6 +564,7 @@ public class UsersEditor extends javax.swing.JFrame {
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -573,7 +574,6 @@ public class UsersEditor extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JLabel usernameLabel;
     // End of variables declaration//GEN-END:variables
 }

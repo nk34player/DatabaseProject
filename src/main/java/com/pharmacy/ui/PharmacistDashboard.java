@@ -142,15 +142,21 @@ public class PharmacistDashboard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        usernameLabel.setText("Loggined as: "+SharedInformation.getUsername());
+        usernameLabel.setText("Loggined as: " + SharedInformation.getUsername());
     }//GEN-LAST:event_formWindowOpened
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
+        SharedInformation.setFrame(this);
+        CategoriesEditor usr = new CategoriesEditor();
+        usr.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
+        SharedInformation.setFrame(this);
+        MedicinesEditor usr = new MedicinesEditor();
+        usr.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
