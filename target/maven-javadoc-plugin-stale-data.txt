@@ -1,0 +1,51 @@
+-J-Duser.language=
+-J-Duser.country=
+@options
+@packages
+--no-fonts
+-classpath
+'C:/Users/PC/.m2/repository/org/postgresql/postgresql/42.7.8/postgresql-42.7.8.jar;C:/Users/PC/.m2/repository/org/netbeans/external/AbsoluteLayout/RELEASE250/AbsoluteLayout-RELEASE250.jar'
+-encoding
+'UTF-8'
+-protected
+--release
+21
+-sourcepath
+'F:/Study/3rd Year CE/Database/FinalProject/src/main/java;F:/Study/3rd Year CE/Database/FinalProject/target/generated-sources/annotations'
+-author
+-bottom
+'Copyright &#169; 2025. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'F:/Study/3rd Year CE/Database/FinalProject/target/reports/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'FinalProject 1.0 API'
+-use
+-version
+-windowtitle
+'FinalProject 1.0 API'
+com.mycompany.hw0
+com.pharmacy.db
+com.pharmacy.ui
+C:\Users\PC\.m2\repository\org\postgresql\postgresql\42.7.8\postgresql-42.7.8.jar = 1765038484439
+C:\Users\PC\.m2\repository\org\netbeans\external\AbsoluteLayout\RELEASE250\AbsoluteLayout-RELEASE250.jar = 1765046682652
+F:\Study\3rd Year CE\Database\FinalProject\src\main\java = 1765136431508
+F:\Study\3rd Year CE\Database\FinalProject\target\generated-sources\annotations = 1765614009332
+F:\Study\3rd Year CE\Database\FinalProject\target\reports\apidocs\allclasses-index.html = 1765614013352
+F:\Study\3rd Year CE\Database\FinalProject\target\reports\apidocs\allpackages-index.html = 1765614013354
+F:\Study\3rd Year CE\Database\FinalProject\target\reports\apidocs\element-list = 1765614013184
+F:\Study\3rd Year CE\Database\FinalProject\target\reports\apidocs\help-doc.html = 1765614013387
+F:\Study\3rd Year CE\Database\FinalProject\target\reports\apidocs\index-all.html = 1765614013381
+F:\Study\3rd Year CE\Database\FinalProject\target\reports\apidocs\index.html = 1765614013332
+F:\Study\3rd Year CE\Database\FinalProject\target\reports\apidocs\member-search-index.js = 1765614013357
+F:\Study\3rd Year CE\Database\FinalProject\target\reports\apidocs\module-search-index.js = 1765614013354
+F:\Study\3rd Year CE\Database\FinalProject\target\reports\apidocs\overview-summary.html = 1765614013384
+F:\Study\3rd Year CE\Database\FinalProject\target\reports\apidocs\overview-tree.html = 1765614013330
+F:\Study\3rd Year CE\Database\FinalProject\target\reports\apidocs\package-search-index.js = 1765614013355
+F:\Study\3rd Year CE\Database\FinalProject\target\reports\apidocs\search.html = 1765614013383
+F:\Study\3rd Year CE\Database\FinalProject\target\reports\apidocs\serialized-form.html = 1765614013243
+F:\Study\3rd Year CE\Database\FinalProject\target\reports\apidocs\tag-search-index.js = 1765614013357
+F:\Study\3rd Year CE\Database\FinalProject\target\reports\apidocs\type-search-index.js = 1765614013356
