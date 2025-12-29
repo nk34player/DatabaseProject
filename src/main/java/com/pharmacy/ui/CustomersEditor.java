@@ -56,6 +56,7 @@ public class CustomersEditor extends javax.swing.JFrame {
         jTextField5 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
+        jButton13 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Manager Dashboard");
@@ -185,12 +186,30 @@ public class CustomersEditor extends javax.swing.JFrame {
         jTextField4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextField4.setText("jTextField1");
 
+        jButton13.setBackground(new java.awt.Color(255, 0, 255));
+        jButton13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton13.setForeground(new java.awt.Color(255, 255, 255));
+        jButton13.setText("Add");
+        jButton13.setToolTipText("");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(321, 321, 321)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(327, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(37, 37, 37)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -232,10 +251,6 @@ public class CustomersEditor extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addGap(18, 18, 18))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(321, 321, 321)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(327, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -249,7 +264,9 @@ public class CustomersEditor extends javax.swing.JFrame {
                     .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(52, 52, 52)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -393,12 +410,12 @@ public class CustomersEditor extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Supplier name is required", "Validation Error", JOptionPane.ERROR_MESSAGE);
             return false;
         }
-        
+
         if (!phoneNumber.isEmpty() && !phoneNumber.matches("^\\d{3}-?\\d{3}-?\\d{4}$")) {
             JOptionPane.showMessageDialog(this, "Invalid phone format", "Validation Error", JOptionPane.ERROR_MESSAGE);
             return false;
         }
-        
+
         if (!email.isEmpty() && !email.matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
             JOptionPane.showMessageDialog(this, "Invalid email format", "Validation Error", JOptionPane.ERROR_MESSAGE);
             return false;
@@ -474,6 +491,86 @@ public class CustomersEditor extends javax.swing.JFrame {
         SharedInformation.getFrame().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
+    private void addNewCustomer() {
+        String fullName = JOptionPane.showInputDialog(this, "Enter full name:");
+        if (fullName == null) {
+            return;
+        }
+        fullName = fullName.trim();
+        if (fullName.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Full name is required", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        String email;
+        while (true) {
+            email = JOptionPane.showInputDialog(this, "Enter email:");
+            if (email == null) {
+                return;
+            }
+            email = email.trim();
+            if (email.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Email is required", "Validation Error", JOptionPane.ERROR_MESSAGE);
+                continue;
+            }
+            if (!email.matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
+                JOptionPane.showMessageDialog(this, "Invalid email format", "Validation Error", JOptionPane.ERROR_MESSAGE);
+                continue;
+            }
+            break;
+        }
+
+        String phone;
+        while (true) {
+            phone = JOptionPane.showInputDialog(this, "Enter phone number:");
+            if (phone == null) {
+                return;
+            }
+            phone = phone.trim();
+            if (phone.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Phone number is required", "Validation Error", JOptionPane.ERROR_MESSAGE);
+                continue;
+            }
+            if (!phone.matches("^\\d{3}-?\\d{3}-?\\d{4}$")) {
+                JOptionPane.showMessageDialog(this, "Invalid phone number format", "Validation Error", JOptionPane.ERROR_MESSAGE);
+                continue;
+            }
+            break;
+        }
+
+        String city = JOptionPane.showInputDialog(this, "Enter city:");
+        if (city == null) {
+            return;
+        }
+
+        String address = JOptionPane.showInputDialog(this, "Enter address:");
+        if (address == null) {
+            return;
+        }
+
+        CustomersDB.Customer newCustomer = new CustomersDB.Customer(
+                0,
+                fullName,
+                phone,
+                email,
+                city,
+                address,
+                ""
+        );
+
+        if (CustomersDB.addCustomer(newCustomer)) {
+            JOptionPane.showMessageDialog(this, "Customer added successfully");
+            initialRun();
+        } else {
+            JOptionPane.showMessageDialog(this, "Failed to add customer", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        addNewCustomer();
+        currentEdit = false;
+        editFields(currentEdit);
+        initialRun();
+    }//GEN-LAST:event_jButton13ActionPerformed
     private void deleteCurrentCustomer() {
         CustomersDB.Customer currentCustomer = customers.get(currentIndex);
         if (currentCustomer != null) {
@@ -507,7 +604,7 @@ public class CustomersEditor extends javax.swing.JFrame {
             }
         }
     }
-    
+
     private void updateButtons() {
         jButton7.setEnabled(currentIndex > 0);
         jButton6.setEnabled(currentIndex < customers.size() - 1);
@@ -587,6 +684,7 @@ public class CustomersEditor extends javax.swing.JFrame {
     private com.pharmacy.ui.GradientPanel gradientPanel1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;

@@ -60,6 +60,7 @@ public class MedicinesEditor extends javax.swing.JFrame {
         jComboBox2 = new javax.swing.JComboBox<>();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
+        jButton13 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Manager Dashboard");
@@ -189,12 +190,30 @@ public class MedicinesEditor extends javax.swing.JFrame {
         jTextField3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextField3.setText("jTextField1");
 
+        jButton13.setBackground(new java.awt.Color(255, 0, 255));
+        jButton13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton13.setForeground(new java.awt.Color(255, 255, 255));
+        jButton13.setText("Add");
+        jButton13.setToolTipText("");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(294, 294, 294)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -243,10 +262,6 @@ public class MedicinesEditor extends javax.swing.JFrame {
                                         .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(18, 18, 18))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(294, 294, 294)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -260,7 +275,9 @@ public class MedicinesEditor extends javax.swing.JFrame {
                     .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -418,7 +435,7 @@ public class MedicinesEditor extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
     private void onViewAllClicked() {
         if (medicines != null) {
-            String[] columns = {"ID", "Medicine name", "Category","Production company"};
+            String[] columns = {"ID", "Medicine name", "Category", "Production company"};
             Object[][] rows = new Object[medicines.size()][4];
 
             for (int i = 0; i < medicines.size(); i++) {
@@ -441,7 +458,7 @@ public class MedicinesEditor extends javax.swing.JFrame {
 
     private void goToMedicine(int id) {
         for (int i = 0; i < medicines.size(); i++) {
-            if (medicines.get(i).getMedicineId()== id) {
+            if (medicines.get(i).getMedicineId() == id) {
                 currentIndex = i;
                 currentEdit = false;
                 editFields(false);
@@ -457,7 +474,7 @@ public class MedicinesEditor extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        deleteCurrentUser();
+        deleteCurrentMedicine();
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -481,10 +498,145 @@ public class MedicinesEditor extends javax.swing.JFrame {
         SharedInformation.getFrame().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
-    private void deleteCurrentUser() {
+    private Object[] getComboItems(javax.swing.JComboBox combo) {
+        Object[] items = new Object[combo.getItemCount()];
+        for (int i = 0; i < combo.getItemCount(); i++) {
+            items[i] = combo.getItemAt(i);
+        }
+        return items;
+    }
+
+    private void addNewMedicine() {
+        String name = JOptionPane.showInputDialog(this, "Enter medicine name:");
+        if (name == null) {
+            return;
+        }
+        name = name.trim();
+        if (name.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Medicine name is required", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        String batchNumber = JOptionPane.showInputDialog(this, "Enter batch number:");
+        if (batchNumber == null) {
+            return;
+        }
+        batchNumber = batchNumber.trim();
+
+        if (jComboBox1.getItemCount() == 0) {
+            JOptionPane.showMessageDialog(this, "No categories available", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        Object categoryChoice = JOptionPane.showInputDialog(
+                this,
+                "Select category:",
+                "Category",
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                getComboItems(jComboBox1),
+                jComboBox1.getSelectedItem()
+        );
+        if (categoryChoice == null) {
+            return;
+        }
+        String categoryName = categoryChoice.toString();
+        int categoryId = CategoriesDB.getCategoryIdByName(categoryName);   // already used in saveBtn()[file:4][file:7]
+
+        if (jComboBox2.getItemCount() == 0) {
+            JOptionPane.showMessageDialog(this, "No suppliers available", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        Object companyChoice = JOptionPane.showInputDialog(
+                this,
+                "Select production company:",
+                "Production company",
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                getComboItems(jComboBox2),
+                jComboBox2.getSelectedItem()
+        );
+        if (companyChoice == null) {
+            return;
+        }
+        String companyName = companyChoice.toString();
+
+        String priceText = JOptionPane.showInputDialog(this, "Enter unit price:");
+        if (priceText == null) {
+            return;
+        }
+        priceText = priceText.trim();
+        if (!isValidDouble(priceText)) {
+            JOptionPane.showMessageDialog(this, "Unit price must be a valid decimal number.", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        double unitPrice = Double.parseDouble(priceText);
+
+        String qtyText = JOptionPane.showInputDialog(this, "Enter stock quantity:");
+        if (qtyText == null) {
+            return;
+        }
+        qtyText = qtyText.trim();
+        if (!isValidInteger(qtyText)) {
+            JOptionPane.showMessageDialog(this, "Stock quantity must be a whole number.", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        int stockQty = Integer.parseInt(qtyText);
+
+        java.sql.Date expiryDate = null;
+        java.sql.Date manufacturingDate = null;
+        try {
+            String expiryStr = JOptionPane.showInputDialog(this, "Enter expiry date (yyyy-MM-dd):");
+            if (expiryStr == null) {
+                return;
+            }
+            expiryStr = expiryStr.trim();
+            if (!expiryStr.isEmpty()) {
+                expiryDate = java.sql.Date.valueOf(expiryStr);
+            }
+
+            String mfgStr = JOptionPane.showInputDialog(this, "Enter manufacturing date (yyyy-MM-dd):");
+            if (mfgStr == null) {
+                return;
+            }
+            mfgStr = mfgStr.trim();
+            if (!mfgStr.isEmpty()) {
+                manufacturingDate = java.sql.Date.valueOf(mfgStr);
+            }
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(this, "Invalid date format. Use yyyy-MM-dd.", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        MedicinesDB.Medicine medicine = new MedicinesDB.Medicine(
+                0,
+                categoryId,
+                name,
+                batchNumber,
+                companyName,
+                unitPrice,
+                stockQty,
+                expiryDate,
+                manufacturingDate
+        );
+
+        boolean ok = MedicinesDB.addMedicine(medicine);
+        if (ok) {
+            JOptionPane.showMessageDialog(this, "Medicine added successfully");
+            initialRun();
+        } else {
+            JOptionPane.showMessageDialog(this, "Failed to add medicine", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        addNewMedicine();
+        currentEdit = false;
+        editFields(currentEdit);
+        initialRun();
+    }//GEN-LAST:event_jButton13ActionPerformed
+    private void deleteCurrentMedicine() {
         Medicine curMedicine = medicines.get(currentIndex);
         if (curMedicine != null) {
-            int confirm = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete this user?", "Confirm Delete", JOptionPane.YES_NO_OPTION);
+            int confirm = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete this medicine?", "Confirm Delete", JOptionPane.YES_NO_OPTION);
             if (confirm == JOptionPane.YES_OPTION) {
                 MedicinesDB.deleteMedicine(curMedicine.getMedicineId());
                 editFields(false);
@@ -621,6 +773,7 @@ public class MedicinesEditor extends javax.swing.JFrame {
     private com.pharmacy.ui.GradientPanel gradientPanel1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;

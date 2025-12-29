@@ -59,6 +59,7 @@ public class SuppliersEditor extends javax.swing.JFrame {
         jTextField5 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
+        jButton13 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Manager Dashboard");
@@ -207,12 +208,30 @@ public class SuppliersEditor extends javax.swing.JFrame {
         jTextField4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextField4.setText("jTextField1");
 
+        jButton13.setBackground(new java.awt.Color(255, 0, 255));
+        jButton13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton13.setForeground(new java.awt.Color(255, 255, 255));
+        jButton13.setText("Add");
+        jButton13.setToolTipText("");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(321, 321, 321)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -262,10 +281,6 @@ public class SuppliersEditor extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addGap(18, 18, 18))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(321, 321, 321)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -279,7 +294,9 @@ public class SuppliersEditor extends javax.swing.JFrame {
                     .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(52, 52, 52)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -472,7 +489,7 @@ public class SuppliersEditor extends javax.swing.JFrame {
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         changeStatus();
     }//GEN-LAST:event_jButton11ActionPerformed
-    private void deleteCurrentUser() {
+    private void deleteCurrentSupplier() {
         SuppliersDB.Supplier currentSupplier = suppliers.get(currentIndex);
         if (currentSupplier != null) {
             int confirm = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete this supplier?", "Confirm Delete", JOptionPane.YES_NO_OPTION);
@@ -484,7 +501,7 @@ public class SuppliersEditor extends javax.swing.JFrame {
         }
     }
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        deleteCurrentUser();
+        deleteCurrentSupplier();
     }//GEN-LAST:event_jButton10ActionPerformed
     private void saveBtn() {
         SuppliersDB.Supplier currentSupplier = suppliers.get(currentIndex);
@@ -519,7 +536,7 @@ public class SuppliersEditor extends javax.swing.JFrame {
         jButton7.setEnabled(currentIndex > 0);
         jButton6.setEnabled(currentIndex < suppliers.size() - 1);
     }
-    
+
     public void previousUser() {
         if (currentIndex > 0) {
             currentIndex--;
@@ -551,7 +568,7 @@ public class SuppliersEditor extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
     private void onViewAllClicked() {
         if (suppliers != null) {
-            String[] columns = {"ID", "Supplier name", "Company name","Email"};
+            String[] columns = {"ID", "Supplier name", "Company name", "Email"};
             Object[][] rows = new Object[suppliers.size()][4];
 
             for (int i = 0; i < suppliers.size(); i++) {
@@ -574,7 +591,7 @@ public class SuppliersEditor extends javax.swing.JFrame {
 
     private void goToSupplier(int id) {
         for (int i = 0; i < suppliers.size(); i++) {
-            if (suppliers.get(i).getSupplierId()== id) {
+            if (suppliers.get(i).getSupplierId() == id) {
                 currentIndex = i;
                 currentEdit = false;
                 editFields(false);
@@ -588,6 +605,72 @@ public class SuppliersEditor extends javax.swing.JFrame {
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         onViewAllClicked();
     }//GEN-LAST:event_jButton12ActionPerformed
+    private void addNewSupplier() {
+        String supplierName = JOptionPane.showInputDialog(this, "Enter supplier name:");
+        if (supplierName == null) {
+            return;
+        }
+        supplierName = supplierName.trim();
+        if (supplierName.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Supplier name is required", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        String companyName = JOptionPane.showInputDialog(this, "Enter company name:");
+        if (companyName == null) {
+            return;
+        }
+        companyName = companyName.trim();
+        if (companyName.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Company name is required", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        String email = JOptionPane.showInputDialog(this, "Enter email:");
+        if (email == null) {
+            return;
+        }
+        email = email.trim();
+        if (!email.isEmpty() && !email.matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
+            JOptionPane.showMessageDialog(this, "Invalid email format", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        String phone = JOptionPane.showInputDialog(this, "Enter phone number:");
+        if (phone == null) {
+            return;
+        }
+        phone = phone.trim();
+
+        String address = JOptionPane.showInputDialog(this, "Enter address:");
+        if (address == null) {
+            return;
+        }
+
+        SuppliersDB.Supplier newSupplier = new SuppliersDB.Supplier(
+                0,
+                supplierName,
+                companyName,
+                phone,
+                email,
+                address,
+                true
+        );
+
+        boolean ok = SuppliersDB.addSupplier(newSupplier);
+        if (ok) {
+            JOptionPane.showMessageDialog(this, "Supplier added successfully");
+            initialRun();
+        } else {
+            JOptionPane.showMessageDialog(this, "Failed to add supplier", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        addNewSupplier();
+        currentEdit = false;
+        editFields(currentEdit);
+        initialRun();
+    }//GEN-LAST:event_jButton13ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -636,6 +719,7 @@ public class SuppliersEditor extends javax.swing.JFrame {
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;

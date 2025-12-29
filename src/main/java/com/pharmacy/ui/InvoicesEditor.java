@@ -440,7 +440,7 @@ public class InvoicesEditor extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        deleteCurrentUser();
+        deleteCurrentInvoice();
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -464,10 +464,10 @@ public class InvoicesEditor extends javax.swing.JFrame {
         SharedInformation.getFrame().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
-    private void deleteCurrentUser() {
+    private void deleteCurrentInvoice() {
         Invoice curInvoice = invoices.get(currentIndex);
         if (curInvoice != null) {
-            int confirm = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete this user?", "Confirm Delete", JOptionPane.YES_NO_OPTION);
+            int confirm = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete this invoice?", "Confirm Delete", JOptionPane.YES_NO_OPTION);
             if (confirm == JOptionPane.YES_OPTION) {
                 InvoicesDB.deleteInvoice(curInvoice.getInvoiceId());
                 editFields(false);

@@ -14,6 +14,8 @@ com\pharmacy\ui\ManagerDashboard$4.class
 com\pharmacy\ui\CustomersEditor$7.class
 com\pharmacy\ui\SuppliersEditor$8.class
 com\pharmacy\db\InvoicesDB.class
+com\pharmacy\ui\MedicinesEditor$10.class
+com\pharmacy\ui\SuppliersEditor$11.class
 com\pharmacy\ui\ManagerDashboard$9.class
 com\pharmacy\ui\UsersEditor$3.class
 com\pharmacy\ui\CustomersEditor$4.class
@@ -55,6 +57,7 @@ com\pharmacy\db\SharedInformation.class
 com\pharmacy\ui\UsersEditor$8.class
 com\pharmacy\ui\CategoriesEditor$1.class
 com\pharmacy\ui\MedicinesEditor$9.class
+com\pharmacy\ui\CustomersEditor$10.class
 com\pharmacy\ui\ManagerDashboard$5.class
 com\pharmacy\ui\MedicinesEditor$2.class
 com\pharmacy\ui\UsersEditor$1.class
@@ -73,6 +76,7 @@ com\pharmacy\ui\CategoriesEditor$8.class
 com\pharmacy\ui\MedicinesEditor$8.class
 com\pharmacy\db\CategoriesDB$Category.class
 com\pharmacy\ui\UsersEditor.class
+com\pharmacy\ui\CategoriesEditor$10.class
 com\pharmacy\db\MedicinesDB.class
 com\pharmacy\ui\CashierDashboard$3.class
 com\pharmacy\ui\SuppliersEditor.class
