@@ -1,0 +1,99 @@
+<!-- Created with Jaspersoft Studio version 7.0.3.final using JasperReports Library version 7.0.3-41034ca841d452f3305ba55b9042260aaa1ab5dd  -->
+<jasperReport name="Simple_Blue" language="java" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="77391a7b-8424-44d1-a2c3-10f0318513b7">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PHARMACY.jrdax"/>
+	<query language="SQL"><![CDATA[SELECT
+    medicine_name,
+    MAX(stock_quantity) AS stock_quantity,
+    MAX(unit_price) AS unit_price
+FROM medicines
+GROUP BY medicine_name
+]]></query>
+	<field name="medicine_name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="medicine_name"/>
+		<property name="com.jaspersoft.studio.field.label" value="medicine_name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="medicines"/>
+	</field>
+	<field name="stock_quantity" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="stock_quantity"/>
+		<property name="com.jaspersoft.studio.field.label" value="stock_quantity"/>
+	</field>
+	<field name="unit_price" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="unit_price"/>
+		<property name="com.jaspersoft.studio.field.label" value="unit_price"/>
+	</field>
+	<background/>
+	<title height="72">
+		<element kind="frame" uuid="c80f5f05-774b-46b7-b58a-ef9d7129e4b1" mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699">
+			<element kind="staticText" uuid="e3d66d63-9730-4f99-93c8-b1f59f1a7e94" x="20" y="20" width="200" height="43" forecolor="#FFFFFF" fontSize="34.0" bold="true">
+				<text><![CDATA[PHARMACY]]></text>
+			</element>
+			<element kind="staticText" uuid="a920a890-9f14-479f-a00c-2e90a16f58c3" x="220" y="43" width="180" height="20" forecolor="#FFFFFF" fontSize="15.0" italic="true" bold="true" underline="false" hTextAlign="Left">
+				<text><![CDATA[details]]></text>
+			</element>
+			<element kind="image" uuid="6763cbbd-934b-45e8-8279-072c7fc17ae8" x="460" y="0" width="135" height="92">
+				<expression><![CDATA["C:/Users/User/Downloads/Screenshot_29-12-2025_23654_www.bing.com.jpeg"]]></expression>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+		</element>
+	</title>
+	<pageHeader height="13"/>
+	<columnHeader height="21">
+		<element kind="line" uuid="0129a4b3-c0c2-4722-a85d-9933fa347ee4" x="-20" y="20" width="595" height="1" forecolor="#666666"/>
+		<element kind="staticText" uuid="e3ac5867-050b-4395-ae42-ca54a0cdadd1" mode="Opaque" x="0" y="0" width="185" height="20" forecolor="#006699" backcolor="#E6E6E6" fontSize="14.0" bold="true" hTextAlign="Center">
+			<text><![CDATA[medicine_name]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c63c7714-1398-4d22-b5ec-a26df9a39aa3"/>
+		</element>
+		<element kind="staticText" uuid="273ff968-5325-4244-97a2-e34eb3bfdb2d" mode="Opaque" x="185" y="0" width="185" height="20" forecolor="#006699" backcolor="#E6E6E6" fontSize="14.0" bold="true" hTextAlign="Center">
+			<text><![CDATA[stock_quantity]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b3fd06b1-218a-46c9-9f6d-323a6c6bf54b"/>
+		</element>
+		<element kind="staticText" uuid="ffddeca0-be35-42e0-9b2c-ffe6f1acdfdc" mode="Opaque" x="370" y="0" width="185" height="20" forecolor="#006699" backcolor="#E6E6E6" fontSize="14.0" bold="true" hTextAlign="Center">
+			<text><![CDATA[unit_price]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4dca3aaf-255a-4269-aec0-c59985d7f01e"/>
+		</element>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<element kind="line" uuid="1c2dae8a-e205-4ec3-899d-5aed41904bac" positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1"/>
+			<element kind="textField" uuid="111984bb-6131-4598-9469-b7334d3cdc5b" x="20" y="0" width="150" height="20" fontSize="14.0" textAdjust="StretchHeight">
+				<expression><![CDATA[$F{medicine_name}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c63c7714-1398-4d22-b5ec-a26df9a39aa3"/>
+			</element>
+			<element kind="textField" uuid="05b6546d-6187-4415-adec-45b09a63e920" x="230" y="0" width="120" height="20" fontSize="14.0" textAdjust="StretchHeight">
+				<expression><![CDATA[$F{stock_quantity}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b3fd06b1-218a-46c9-9f6d-323a6c6bf54b"/>
+			</element>
+			<element kind="textField" uuid="9cea1189-0918-4401-a471-fc0d27547d1b" x="434" y="0" width="110" height="20" fontSize="14.0" textAdjust="StretchHeight">
+				<expression><![CDATA[$F{unit_price}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4dca3aaf-255a-4269-aec0-c59985d7f01e"/>
+			</element>
+		</band>
+	</detail>
+	<columnFooter/>
+	<pageFooter height="329">
+		<element kind="textField" uuid="d1a6d91f-084c-4962-b736-a5795a94d95c" mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" hTextAlign="Right">
+			<expression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></expression>
+		</element>
+		<element kind="textField" uuid="9d5b5ef0-8239-4dbf-8e32-b0b1e73ae057" mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" evaluationTime="Report">
+			<expression><![CDATA[" " + $V{PAGE_NUMBER}]]></expression>
+		</element>
+		<element kind="textField" uuid="c3ab41f6-0457-4edf-93e7-21bc8410d054" x="0" y="4" width="100" height="13" pattern="EEEEE dd MMMMM yyyy">
+			<expression><![CDATA[new java.util.Date()]]></expression>
+		</element>
+		<element kind="chart" chartType="bar3D" uuid="b5083569-1fce-485f-be04-aadf71c198b6" x="0" y="129" width="555" height="200" evaluationTime="Report">
+			<dataset kind="category">
+				<series>
+					<seriesExpression><![CDATA[$F{medicine_name}]]></seriesExpression>
+					<categoryExpression><![CDATA[$F{unit_price}]]></categoryExpression>
+					<valueExpression><![CDATA[$F{stock_quantity}]]></valueExpression>
+				</series>
+			</dataset>
+			<plot>
+				<itemLabel/>
+			</plot>
+		</element>
+	</pageFooter>
+	<summary/>
+</jasperReport>
