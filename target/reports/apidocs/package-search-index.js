@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html","k":"18"},{"l":"com.mycompany.hw0"},{"l":"com.pharmacy.db"},{"l":"com.pharmacy.ui"}];updateSearchResults();

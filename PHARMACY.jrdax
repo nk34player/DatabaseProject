@@ -3,8 +3,8 @@
 	<name>PHARMACY</name>
 	<classpath>C:\Program Files\PostgreSQL\18\postgresql-42.7.8.jar</classpath>
 	<driver>org.postgresql.Driver</driver>
-	<username>project</username>
-	<password>12323605</password>
+	<username>postgres</username>
+	<password>admin</password>
 	<url>jdbc:postgresql://localhost:5432/project</url>
 	<database></database>
 	<savePassword>true</savePassword>

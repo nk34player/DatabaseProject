@@ -106,6 +106,7 @@ com\pharmacy\ui\MedicinesEditor$6.class
 com\pharmacy\ui\ManagerDashboard$3.class
 com\pharmacy\ui\CashierDashboard$4.class
 com\pharmacy\ui\CategoriesEditor.class
+com\pharmacy\ui\MedicinesEditor$11.class
 com\pharmacy\ui\CustomersEditor$1.class
 com\pharmacy\ui\ProductTemplate$1.class
 com\pharmacy\ui\InvoicesEditor$8.class
